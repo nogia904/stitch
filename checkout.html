@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Shopping Bag &amp; Express Checkout — AURA Living</title>
+
+  <!-- Typography & Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#994126",
+            "primary-container": "#b9583b",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#ffdbd1",
+            "on-primary-fixed": "#3a0a00",
+            "secondary": "#536251",
+            "secondary-container": "#d4e4ce",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#586755",
+            "secondary-fixed": "#d7e7d1",
+            "on-secondary-fixed": "#111f11",
+            "tertiary": "#964327",
+            "tertiary-container": "#b55b3d",
+            "surface": "#fcf9f8",
+            "surface-dim": "#dcd9d9",
+            "surface-bright": "#fcf9f8",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f6f3f2",
+            "surface-container": "#f0eded",
+            "surface-container-high": "#eae7e7",
+            "surface-container-highest": "#e5e2e1",
+            "on-surface": "#1c1b1b",
+            "on-surface-variant": "#56423d",
+            "inverse-surface": "#313030",
+            "inverse-on-surface": "#f3f0ef",
+            "outline": "#89726c",
+            "outline-variant": "#dcc1b9",
+            "error": "#ba1a1a"
+          },
+          fontFamily: {
+            "display-hero": ["Playfair Display", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "1.5rem",
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "margin-mobile": "1.25rem",
+            "space-xs": "0.375rem",
+            "space-sm": "0.75rem",
+            "space-md": "1.25rem",
+            "space-lg": "2rem",
+            "space-xl": "3.5rem"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 inset-x-0 z-50 glass-header border-b border-outline-variant/30 shadow-[0_1px_12px_rgba(28,27,27,0.03)]">
+    <div class="bg-surface-container-high/80 px-gutter-mobile md:px-margin border-b border-outline-variant/20">
+      <div class="max-w-[1360px] mx-auto h-8 flex items-center justify-center text-center">
+        <p class="font-label-caps text-[11px] text-on-surface-variant tracking-wider uppercase flex items-center gap-space-sm">
+          <span>Complimentary worldwide white-glove shipping on orders over $150</span>
+          <span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+          <span class="text-primary font-semibold">Use code AURAHOME for 15% off</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-[1360px] mx-auto h-20 px-gutter-mobile md:px-margin flex items-center justify-between gap-gutter">
+      <div class="flex items-center gap-space-md shrink-0">
+        <a class="flex items-center gap-space-sm group" href="index.html">
+          <img alt="AURA Living Brand Logo" class="h-8 w-auto object-contain" src="assets/logo.svg"/>
+        </a>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-space-lg">
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html">Shop All</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?cat=furniture">Living &amp; Furniture</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?cat=lighting">Lighting</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?cat=ceramics">Ceramics &amp; Decor</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?sale=true">Sale</a>
+      </nav>
+
+      <div class="flex items-center gap-space-sm shrink-0">
+        <button aria-label="Search catalog" class="hidden sm:flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface-variant hover:text-on-surface transition-all" type="button">
+          <span class="material-symbols-outlined text-[18px]">search</span>
+          <span class="text-[13px] hidden md:inline">Search</span>
+          <kbd class="text-[11px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant/50 text-on-surface-variant font-mono">⌘K</kbd>
+        </button>
+
+        <a aria-label="View Wishlist" class="relative p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#">
+          <span class="material-symbols-outlined text-[22px]">favorite</span>
+          <span class="absolute top-1 right-1 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-secondary text-on-secondary font-label-caps text-[10px] leading-none font-bold">0</span>
+        </a>
+
+        <a aria-label="View Shopping Cart" class="flex items-center gap-space-xs p-1.5 pr-2.5 rounded-lg text-primary bg-primary-fixed/20 transition-colors group" href="checkout.html">
+          <span class="relative flex items-center">
+            <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+            <span class="absolute -top-1 -right-1 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-primary text-on-primary font-label-caps text-[10px] leading-none font-bold">0</span>
+          </span>
+          <span class="font-label-sm text-[13px] text-on-surface hidden md:inline font-semibold pl-1">$0.00</span>
+        </a>
+
+        <div class="h-5 w-px bg-outline-variant/40 mx-0.5 hidden sm:block"></div>
+
+        <a aria-label="Customer Account" class="flex items-center gap-space-xs pl-1 group" href="#">
+          <img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/50 group-hover:ring-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdxJ7Sts5Ei8OZPEWBSIsITEE0gY2CmfLGcXFlOQux3n3VC3TLIrVsyW-HfefRuBi3Zt5cSwhWhgJMs6F2439y-7PnOhyY8X2TsI7HmrWBDg2u5ClqXz0TI-Wp8MopzAZNfBrrsp2nmUfOkqdbw114LcBkzXWHfzwocqaypCXgSBkBddNQr0TIIlN5YEg792j8V2xqyUTr9ImLFVHcoxuSYZuM7rlybj76HzhqYuE-qQfHVSa5A1zc"/>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CHECKOUT CONTENT -->
+  <main class="w-full pt-28 bg-surface min-h-screen">
+    <div class="max-w-[1360px] mx-auto w-full px-gutter-mobile md:px-margin pt-space-md pb-space-xl">
+      
+      <!-- Top Tracker & Heading Section -->
+      <div class="flex flex-col gap-space-md mb-space-lg">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
+          <div>
+            <span class="font-label-caps text-[11px] text-primary tracking-widest uppercase block mb-1">Curated Bag</span>
+            <h1 class="font-headline-lg text-3xl lg:text-4xl text-on-surface font-display-hero">Your Shopping Bag &amp; Express Checkout</h1>
+          </div>
+          <div class="flex items-center gap-2 text-on-surface-variant text-[13px]">
+            <span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
+            <span>Guaranteed Safe &amp; Direct Atelier Delivery</span>
+          </div>
+        </div>
+
+        <!-- Stepper Indicator -->
+        <div class="grid grid-cols-3 gap-space-sm py-space-sm">
+          <!-- Step 1 Tab -->
+          <button onclick="goToCheckoutStep(1)" class="flex items-center gap-space-xs text-primary pb-2 relative text-left">
+            <div id="step-num-1" class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-[12px] font-semibold shrink-0">1</div>
+            <span id="step-label-1" class="font-semibold text-on-surface text-[14px] truncate">1. Bag Review</span>
+            <div id="step-bar-1" class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+          </button>
+          <!-- Step 2 Tab -->
+          <button onclick="goToCheckoutStep(2)" class="flex items-center gap-space-xs text-on-surface-variant pb-2 relative opacity-60 text-left">
+            <div id="step-num-2" class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-[12px] font-semibold shrink-0">2</div>
+            <span id="step-label-2" class="text-[14px] truncate">2. Shipping Details</span>
+            <div id="step-bar-2" class="absolute bottom-0 left-0 right-0 h-0.5 bg-surface-container-high"></div>
+          </button>
+          <!-- Step 3 Tab -->
+          <button onclick="goToCheckoutStep(3)" class="flex items-center gap-space-xs text-on-surface-variant pb-2 relative opacity-60 text-left">
+            <div id="step-num-3" class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-[12px] font-semibold shrink-0">3</div>
+            <span id="step-label-3" class="text-[14px] truncate">3. Payment &amp; Confirmation</span>
+            <div id="step-bar-3" class="absolute bottom-0 left-0 right-0 h-0.5 bg-surface-container-high"></div>
+          </button>
+        </div>
+
+        <!-- Free Shipping Incentive Banner -->
+        <div class="bg-surface-container-low rounded-2xl p-space-md shadow-sm border border-outline-variant/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-xs">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-primary text-[22px] icon-filled">local_shipping</span>
+              <p id="checkout-shipping-banner-text" class="text-[14px] font-medium text-on-surface">
+                You've unlocked complimentary <span class="text-primary font-semibold">White Glove Delivery!</span>
+              </p>
+            </div>
+            <span id="checkout-shipping-badge" class="font-label-caps text-[11px] text-secondary font-bold tracking-wider uppercase bg-secondary-container/40 px-3 py-1 rounded-full w-fit">Benefit Activated</span>
+          </div>
+          <div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+            <div id="checkout-shipping-progress" class="bg-primary h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main 2-Column Responsive Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+        
+        <!-- Left Column: Steps 1, 2, 3 -->
+        <div class="lg:col-span-7 flex flex-col gap-space-md">
+          
+          <!-- STEP 1 CONTAINER: CART ITEMS & PREFERENCES -->
+          <div id="checkout-step-1" class="space-y-space-md">
+            <!-- Dynamic Cart Items Container -->
+            <div id="checkout-items-list" class="space-y-space-md">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Care Protection Add-on -->
+            <div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-sm border border-outline-variant/30">
+              <input id="checkout-protection-chk" onchange="AURAStore.setProtectionPlan(this.checked)" checked class="mt-1 h-4 w-4 rounded accent-primary text-primary cursor-pointer" type="checkbox"/>
+              <label class="cursor-pointer select-none flex-1" for="checkout-protection-chk">
+                <span class="font-semibold text-on-surface block text-[14px]">Add 5-Year Fabric &amp; Structural Protection Plan (+$65)</span>
+                <span class="text-[12px] text-on-surface-variant block mt-0.5 leading-relaxed">Covers accidental spills, organic stains, frame defects, and seam splits with in-home artisan repair or direct replacement.</span>
+              </label>
+            </div>
+
+            <!-- Delivery Preferences Selection Card -->
+            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-outline-variant/30 space-y-space-sm">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+                <h4 class="font-headline-sm text-lg text-on-surface font-display-hero">Delivery Method</h4>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+                <!-- Standard Curbside -->
+                <label class="relative flex flex-col p-4 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all border border-outline-variant/20">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-semibold text-[13px] text-on-surface">Standard Curbside</span>
+                    <span class="text-[12px] font-semibold text-secondary uppercase tracking-wider">Free</span>
+                  </div>
+                  <p class="text-[12px] text-on-surface-variant mb-3">Estimated 3–5 business days. Safe contactless threshold drop-off.</p>
+                  <div class="mt-auto flex items-center gap-2">
+                    <input onchange="AURAStore.setShippingMethod('standard')" class="accent-primary h-4 w-4" name="shipping-tier" type="radio" value="standard"/>
+                    <span class="text-[12px] text-on-surface-variant">Select standard</span>
+                  </div>
+                </label>
+                <!-- White Glove Delivery (Active) -->
+                <label class="relative flex flex-col p-4 rounded-xl bg-primary-fixed/20 shadow-sm cursor-pointer transition-all border border-primary/30">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-1.5">
+                      <span class="font-semibold text-[13px] text-primary">White Glove Service</span>
+                      <span class="material-symbols-outlined text-[16px] text-primary icon-filled">stars</span>
+                    </div>
+                    <div class="text-right">
+                      <span class="line-through text-[12px] text-outline mr-1">$75.00</span>
+                      <span class="text-[12px] font-bold text-primary">FREE</span>
+                    </div>
+                  </div>
+                  <p class="text-[12px] text-on-surface-variant mb-3">Room of choice placement, assembly, inspection &amp; full packaging debris removal.</p>
+                  <div class="mt-auto flex items-center gap-2">
+                    <input onchange="AURAStore.setShippingMethod('white-glove')" checked class="accent-primary h-4 w-4" name="shipping-tier" type="radio" value="white-glove"/>
+                    <span class="text-[12px] font-semibold text-primary">Included with order</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Gift Options Section -->
+            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-outline-variant/30">
+              <div class="flex items-start gap-space-sm">
+                <input onchange="document.getElementById('gift-message-box').classList.toggle('hidden', !this.checked)" class="mt-1 h-4 w-4 rounded accent-primary text-primary cursor-pointer" id="gift-option" type="checkbox"/>
+                <div class="flex-1">
+                  <label class="font-semibold text-[13px] text-on-surface cursor-pointer flex items-center gap-1.5" for="gift-option">
+                    <span class="material-symbols-outlined text-[18px] text-primary">redeem</span>
+                    <span>This is a gift — include personalized embossed note card (Complimentary)</span>
+                  </label>
+                  <p class="text-[12px] text-on-surface-variant mt-1">We will tuck a thick, hand-pressed cotton card with your personal note into an envelope sealed with our signature wax stamp.</p>
+                  <div class="mt-3 hidden" id="gift-message-box">
+                    <textarea class="w-full p-3 rounded-xl bg-surface-container-low text-[13px] text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-all resize-none border border-outline-variant/30" placeholder="Enter your heartfelt message here (up to 240 characters)..." rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Promo Code Input & Applied Badges -->
+            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-outline-variant/30">
+              <div class="flex items-center justify-between mb-space-xs">
+                <span class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant font-semibold">Promotion &amp; Collector Codes</span>
+                <span id="promo-status-text" class="text-[12px] text-primary font-medium">1 Applied</span>
+              </div>
+              <div class="flex items-center gap-space-xs">
+                <div class="relative flex-1">
+                  <input id="checkout-promo-input" class="w-full h-11 px-4 rounded-xl bg-surface-container-low text-[13px] text-on-surface font-semibold uppercase tracking-wider focus:outline-none focus:bg-surface-container transition-all border border-outline-variant/30" placeholder="Enter coupon code (e.g. AURAHOME)" type="text" value="AURAHOME"/>
+                </div>
+                <button onclick="handleApplyPromo()" class="h-11 px-5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-[13px] font-semibold tracking-wide transition-colors" type="button">Apply</button>
+              </div>
+              <div id="applied-promo-badge" class="mt-space-xs inline-flex items-center gap-1.5 bg-primary-fixed/30 text-on-primary-fixed px-3 py-1.5 rounded-full">
+                <span class="material-symbols-outlined text-[16px] text-primary">loyalty</span>
+                <span id="applied-promo-text" class="text-[12px] font-semibold">AURAHOME (15% Off Applied)</span>
+                <button onclick="AURAStore.removePromoCode()" aria-label="Remove code" class="hover:text-primary transition-colors ml-1 font-bold" type="button">×</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 CONTAINER: SHIPPING DETAILS FORM -->
+          <div id="checkout-step-2" class="space-y-space-md hidden">
+            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-outline-variant/30 space-y-space-md">
+              <div class="flex items-center justify-between border-b pb-space-xs">
+                <h3 class="font-headline-sm text-xl text-on-surface font-display-hero">Shipping Address</h3>
+                <span class="text-[12px] text-secondary font-semibold">Step 2 of 3</span>
+              </div>
+              <div class="space-y-3 text-[13px]">
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block font-semibold mb-1">First Name</label>
+                    <input id="ship-fname" value="Elena" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                  </div>
+                  <div>
+                    <label class="block font-semibold mb-1">Last Name</label>
+                    <input id="ship-lname" value="Sterling" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1">Email Address (for freight tracking)</label>
+                  <input id="ship-email" type="email" value="elena.sterling@example.com" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1">Street Address</label>
+                  <input id="ship-address" value="742 Evergreen Terrace" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                  <div>
+                    <label class="block font-semibold mb-1">City</label>
+                    <input id="ship-city" value="San Francisco" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                  </div>
+                  <div>
+                    <label class="block font-semibold mb-1">State / Province</label>
+                    <input id="ship-state" value="CA" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                  </div>
+                  <div>
+                    <label class="block font-semibold mb-1">Postal Code</label>
+                    <input id="ship-zip" value="94102" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1">Delivery Contact Phone (for courier appointment)</label>
+                  <input id="ship-phone" value="+1 (415) 890-4821" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3 CONTAINER: PAYMENT OPTIONS -->
+          <div id="checkout-step-3" class="space-y-space-md hidden">
+            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-outline-variant/30 space-y-space-md">
+              <div class="flex items-center justify-between border-b pb-space-xs">
+                <h3 class="font-headline-sm text-xl text-on-surface font-display-hero">Payment Method</h3>
+                <span class="text-[12px] text-secondary font-semibold">Step 3 of 3</span>
+              </div>
+              
+              <!-- Payment Method Tabs -->
+              <div class="grid grid-cols-3 gap-2">
+                <button onclick="selectPaymentTab('card')" id="pay-tab-card" class="p-3 rounded-xl border border-primary bg-primary-fixed/20 text-primary font-semibold text-[13px] flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-[18px]">credit_card</span>
+                  <span>Credit Card</span>
+                </button>
+                <button onclick="selectPaymentTab('klarna')" id="pay-tab-klarna" class="p-3 rounded-xl border border-outline-variant/40 bg-surface-container-low text-on-surface font-semibold text-[13px] flex items-center justify-center gap-1.5">
+                  <span>Klarna (4x)</span>
+                </button>
+                <button onclick="selectPaymentTab('apple')" id="pay-tab-apple" class="p-3 rounded-xl border border-outline-variant/40 bg-surface-container-low text-on-surface font-semibold text-[13px] flex items-center justify-center gap-1.5">
+                  <span>Pay / GPay</span>
+                </button>
+              </div>
+
+              <!-- Card form -->
+              <div id="card-fields-box" class="space-y-3 text-[13px] pt-2">
+                <div>
+                  <label class="block font-semibold mb-1">Card Number</label>
+                  <div class="relative">
+                    <input id="card-number" placeholder="4242 •••• •••• 4242" value="4242 8492 0184 4242" class="w-full h-11 px-3 pr-12 rounded-xl bg-surface-container-low border border-outline-variant/40 font-mono" />
+                    <span class="material-symbols-outlined text-outline absolute right-3 top-2.5">credit_card</span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block font-semibold mb-1">Expiry Date</label>
+                    <input placeholder="MM / YY" value="08 / 28" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40 font-mono" />
+                  </div>
+                  <div>
+                    <label class="block font-semibold mb-1">Security Code (CVC)</label>
+                    <input placeholder="CVC" value="842" class="w-full h-11 px-3 rounded-xl bg-surface-container-low border border-outline-variant/40 font-mono" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Sticky Summary & Express Checkout Card -->
+        <div class="lg:col-span-5 sticky top-28 space-y-space-md">
+          <div class="bg-surface-container-lowest rounded-3xl p-space-md md:p-space-lg shadow-sm border border-outline-variant/30 space-y-space-md">
+            <div class="border-b pb-space-sm">
+              <h2 class="font-headline-sm text-2xl text-on-surface font-display-hero">Order Summary</h2>
+              <p id="checkout-summary-itemcount" class="text-[13px] text-on-surface-variant mt-0.5">3 handpicked items ready for dispatch</p>
+            </div>
+
+            <!-- Cost Breakdown List -->
+            <div class="space-y-space-xs text-[14px] text-on-surface">
+              <div class="flex items-center justify-between text-on-surface-variant">
+                <span>Subtotal</span>
+                <span id="summary-subtotal" class="font-medium text-on-surface">$1,245.00</span>
+              </div>
+              <div id="summary-discount-row" class="flex items-center justify-between text-primary">
+                <span class="flex items-center gap-1">
+                  <span>Promotional Discount</span>
+                  <span id="summary-discount-tag" class="font-label-caps text-[10px] bg-primary-fixed/40 px-1.5 py-0.5 rounded font-bold uppercase">15% Off</span>
+                </span>
+                <span id="summary-discount-val" class="font-semibold">-$186.75</span>
+              </div>
+              <div id="summary-protection-row" class="flex items-center justify-between text-on-surface-variant">
+                <span>Care Protection Plan</span>
+                <span id="summary-protection-val" class="font-medium text-on-surface">+$65.00</span>
+              </div>
+              <div class="flex items-center justify-between text-on-surface-variant">
+                <span>White Glove Shipping</span>
+                <span class="font-semibold text-secondary uppercase font-label-caps text-[11px] tracking-wider">Free ($0.00)</span>
+              </div>
+              <div class="flex items-center justify-between text-on-surface-variant">
+                <span class="flex items-center gap-1">
+                  <span>Estimated Sales Taxes</span>
+                  <span class="material-symbols-outlined text-[16px] text-outline cursor-pointer" title="Calculated based on standard state tax rate">help_outline</span>
+                </span>
+                <span id="summary-tax" class="font-medium text-on-surface">$78.20</span>
+              </div>
+            </div>
+
+            <!-- Total Calculation -->
+            <div class="pt-space-sm bg-surface-container-low -mx-space-md md:-mx-space-lg p-space-md rounded-2xl border border-outline-variant/30">
+              <div class="flex items-baseline justify-between mb-1">
+                <div>
+                  <span class="font-headline-sm text-xl font-bold text-on-surface">Total</span>
+                  <span class="text-[11px] text-on-surface-variant block uppercase tracking-wider">Taxes &amp; White Glove Included</span>
+                </div>
+                <div class="text-right">
+                  <span id="summary-total" class="font-headline-md text-3xl font-bold text-on-surface">$1,136.45</span>
+                  <span class="font-label-caps text-[10px] text-on-surface-variant block uppercase tracking-wider font-mono">USD</span>
+                </div>
+              </div>
+              <!-- Klarna Slice -->
+              <div class="mt-2 pt-2 border-t border-outline-variant/20 flex items-center justify-between text-[12px] text-on-surface-variant">
+                <span>Or 4 interest-free payments of <strong id="summary-klarna-val" class="text-on-surface font-semibold">$284.11</strong></span>
+                <span class="px-2 py-0.5 rounded bg-surface-container font-label-caps font-bold text-[10px] tracking-wider text-on-surface">KLARNA</span>
+              </div>
+            </div>
+
+            <!-- Step Action Button -->
+            <div class="pt-space-xs">
+              <button id="checkout-main-cta" onclick="handleCheckoutCTA()" class="w-full h-14 rounded-2xl bg-primary hover:bg-primary-container text-on-primary font-label-md text-[14px] uppercase tracking-wider font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-space-xs group" type="button">
+                <span id="checkout-cta-text">Proceed to Shipping</span>
+                <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </button>
+              <p class="text-center text-[12px] text-on-surface-variant mt-2">No charge until final billing confirmation is verified.</p>
+            </div>
+
+            <!-- Express Pay Options -->
+            <div class="space-y-space-xs pt-space-xs border-t border-outline-variant/20">
+              <div class="flex items-center gap-space-xs mb-2">
+                <div class="h-px bg-surface-container-high flex-1"></div>
+                <span class="font-label-caps text-[10px] uppercase tracking-wider text-outline font-semibold">Express Checkout</span>
+                <div class="h-px bg-surface-container-high flex-1"></div>
+              </div>
+              <button onclick="triggerOrderSuccess()" class="w-full h-12 rounded-xl bg-black hover:bg-neutral-800 text-white flex items-center justify-center gap-2 text-[14px] font-semibold transition-all shadow-sm" type="button">
+                <span>Pay with</span>
+                <span class="font-display-hero text-lg font-bold">Pay</span>
+              </button>
+            </div>
+
+            <!-- Trust & Assurance Badges -->
+            <div class="pt-space-sm space-y-2 text-[12px]">
+              <div class="flex items-center gap-space-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-secondary text-[20px] icon-filled">lock</span>
+                <span><strong>256-Bit SSL</strong> Bank-Grade Security encryption standard.</span>
+              </div>
+              <div class="flex items-center gap-space-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-secondary text-[20px] icon-filled">assignment_return</span>
+                <span><strong>30-Day Hassle-Free Returns</strong> with free white-glove pickup.</span>
+              </div>
+            </div>
+
+            <!-- Concierge Specialist -->
+            <div class="p-space-sm rounded-2xl bg-surface-container-low flex items-center gap-space-sm border border-outline-variant/20">
+              <img alt="Concierge Specialist" class="w-10 h-10 rounded-full object-cover shrink-0 ring-1 ring-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdxJ7Sts5Ei8OZPEWBSIsITEE0gY2CmfLGcXFlOQux3n3VC3TLIrVsyW-HfefRuBi3Zt5cSwhWhgJMs6F2439y-7PnOhyY8X2TsI7HmrWBDg2u5ClqXz0TI-Wp8MopzAZNfBrrsp2nmUfOkqdbw114LcBkzXWHfzwocqaypCXgSBkBddNQr0TIIlN5YEg792j8V2xqyUTr9ImLFVHcoxuSYZuM7rlybj76HzhqYuE-qQfHVSa5A1zc"/>
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-on-surface text-[13px]">Questions about dimensions?</p>
+                <p class="text-[12px] text-on-surface-variant truncate">Chat live with Clara, Senior Interior Stylist.</p>
+              </div>
+              <button onclick="AURAStore.showToast('Connecting with Stylist Clara...')" class="shrink-0 p-2 rounded-xl bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary transition-colors shadow-sm" type="button">
+                <span class="material-symbols-outlined text-[18px]">forum</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Add Before You Go / Curated Complementary Trio -->
+      <div class="mt-space-xl pt-space-lg border-t border-outline-variant/30">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-xs mb-space-md">
+          <div>
+            <span class="font-label-caps text-[11px] text-primary uppercase tracking-widest block mb-1">Harmonious Additions</span>
+            <h2 class="font-display-hero text-2xl lg:text-3xl text-on-surface">Complete Your Sanctuary</h2>
+          </div>
+          <a class="text-[13px] text-on-surface hover:text-primary transition-colors inline-flex items-center gap-1 group font-semibold" href="catalog.html">
+            <span>Explore All Complementary Objects</span>
+            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md" id="checkout-accessories-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ORDER CONFIRMATION MODAL -->
+  <div id="order-success-modal" class="fixed inset-0 z-[120] hidden">
+    <div class="fixed inset-0 bg-charcoal/60 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
+    <div class="fixed inset-4 sm:inset-10 flex items-center justify-center z-10 pointer-events-none">
+      <div class="bg-surface glass-modal rounded-3xl shadow-2xl border border-outline-variant/40 max-w-lg w-full p-space-lg text-center space-y-space-md pointer-events-auto transform scale-95 opacity-0 transition-all duration-300">
+        <div class="w-16 h-16 rounded-full bg-secondary-container text-secondary flex items-center justify-center mx-auto shadow-md">
+          <span class="material-symbols-outlined text-[36px]">check_circle</span>
+        </div>
+        <div>
+          <span class="font-label-caps text-[11px] text-primary uppercase tracking-widest font-semibold block mb-1">Order Confirmed</span>
+          <h3 class="font-display-hero text-3xl text-on-surface">Thank You, Elena</h3>
+          <p class="text-[13px] text-on-surface-variant mt-1">We have received your curation. Your dispatch dossier and white-glove itinerary have been delivered to your inbox.</p>
+        </div>
+        <div class="p-space-sm rounded-2xl bg-surface-container-low text-left space-y-1 text-[13px] border border-outline-variant/20">
+          <div class="flex justify-between">
+            <span class="text-outline">Order Identifier:</span>
+            <span class="font-mono font-bold text-on-surface">#AURA-84920</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-outline">Delivery Method:</span>
+            <span class="font-semibold text-secondary">White Glove Dedicated Freight</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-outline">Estimated Arrival:</span>
+            <span class="font-semibold text-on-surface">Oct 12 – Oct 15, 2025</span>
+          </div>
+        </div>
+        <div class="flex gap-space-xs pt-space-xs">
+          <button onclick="window.print()" class="flex-1 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold text-[13px] transition-colors">
+            Print Dossier
+          </button>
+          <a href="index.html" class="flex-1 py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-semibold text-[13px] transition-colors flex items-center justify-center">
+            Return to Gallery
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30 text-on-surface">
+    <div class="max-w-[1360px] mx-auto px-gutter-mobile md:px-margin pt-space-xl pb-space-lg">
+      <div class="pt-space-md border-t border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-space-md text-[13px] text-on-surface-variant">
+        <span>© 2025 AURA Living Inc. All rights reserved.</span>
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="hover:text-primary">Home</a>
+          <a href="catalog.html" class="hover:text-primary">Catalog</a>
+          <a href="checkout.html" class="hover:text-primary font-medium text-primary">Shopping Bag</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+
+  <script>
+    let currentCheckoutStep = 1;
+
+    function initCheckout() {
+      renderCheckoutCart();
+      renderAccessories();
+      updateCheckoutSummary();
+
+      window.addEventListener('cartUpdated', () => {
+        renderCheckoutCart();
+        updateCheckoutSummary();
+      });
+    }
+
+    function renderCheckoutCart() {
+      const cart = AURAStore.getCart();
+      const list = document.getElementById('checkout-items-list');
+      if (!list) return;
+
+      if (cart.length === 0) {
+        list.innerHTML = `
+          <div class="bg-surface-container-lowest rounded-3xl p-12 text-center space-y-3 border border-outline-variant/30 shadow-sm">
+            <span class="material-symbols-outlined text-[48px] text-outline">shopping_bag</span>
+            <h3 class="font-display-hero text-2xl text-on-surface">Your bag is currently empty</h3>
+            <p class="text-sm text-on-surface-variant max-w-sm mx-auto">Discover timeless architectural pieces from our master artisans.</p>
+            <a href="catalog.html" class="inline-block mt-2 px-6 py-2.5 rounded-xl bg-primary text-on-primary font-semibold text-sm">Explore Collection</a>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = cart.map((item, idx) => `
+        <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-outline-variant/30 flex flex-col gap-space-sm card-hover-scale" id="cart-item-row-${idx}">
+          <div class="flex flex-col sm:flex-row gap-space-md">
+            <div class="w-full sm:w-36 h-40 rounded-xl overflow-hidden shrink-0 bg-surface-container relative">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-start justify-between gap-space-xs">
+                  <div>
+                    <span class="font-label-caps text-[10px] text-outline uppercase tracking-wider block">${item.categoryLabel}</span>
+                    <h3 class="font-display-hero text-xl text-on-surface font-medium">${item.title}</h3>
+                  </div>
+                  <span class="font-display-hero text-xl font-semibold text-on-surface">$${(item.price * item.qty).toFixed(2)}</span>
+                </div>
+                <p class="text-[13px] text-on-surface-variant mt-1">${item.fabric ? 'Finish: ' + item.fabric : ''}${item.wood ? ' · ' + item.wood : ''}</p>
+                <div class="flex items-center gap-1.5 mt-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  <span class="text-[12px] text-secondary font-medium">${item.provenance}</span>
+                </div>
+              </div>
+              <!-- Quantity & Row Actions -->
+              <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-sm mt-space-xs border-t border-outline-variant/20">
+                <div class="inline-flex items-center bg-surface-container-low rounded-xl p-1 border border-outline-variant/30">
+                  <button onclick="AURAStore.updateQty(${idx}, ${item.qty - 1})" aria-label="Decrease quantity" class="w-7 h-7 flex items-center justify-center text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button">
+                    <span class="material-symbols-outlined text-[16px]">remove</span>
+                  </button>
+                  <span class="w-8 text-center text-[13px] font-semibold text-on-surface">${item.qty}</span>
+                  <button onclick="AURAStore.updateQty(${idx}, ${item.qty + 1})" aria-label="Increase quantity" class="w-7 h-7 flex items-center justify-center text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                  </button>
+                </div>
+                <div class="flex items-center gap-space-md">
+                  <button onclick="AURAStore.toggleWishlist('${item.id}')" class="inline-flex items-center gap-1 text-[12px] text-on-surface-variant hover:text-primary transition-colors" type="button">
+                    <span class="material-symbols-outlined text-[16px]">favorite</span>
+                    <span>Move to Wishlist</span>
+                  </button>
+                  <button onclick="removeRowWithAnim(${idx})" class="inline-flex items-center gap-1 text-[12px] text-error hover:opacity-80 transition-opacity" type="button">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                    <span>Remove</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function removeRowWithAnim(idx) {
+      const row = document.getElementById(`cart-item-row-${idx}`);
+      if (row) {
+        row.style.opacity = '0';
+        row.style.transform = 'scale(0.96)';
+        row.style.transition = 'all 0.3s ease-out';
+        setTimeout(() => AURAStore.removeItem(idx), 300);
+      } else {
+        AURAStore.removeItem(idx);
+      }
+    }
+
+    function updateCheckoutSummary() {
+      const totals = AURAStore.getTotals();
+      
+      document.getElementById('checkout-summary-itemcount').textContent = `${totals.count} handpicked item${totals.count === 1 ? '' : 's'} ready for dispatch`;
+      document.getElementById('summary-subtotal').textContent = `$${totals.subtotal.toFixed(2)}`;
+      document.getElementById('summary-tax').textContent = `$${totals.tax.toFixed(2)}`;
+      document.getElementById('summary-total').textContent = `$${totals.total.toFixed(2)}`;
+      document.getElementById('summary-klarna-val').textContent = `$${(totals.total / 4).toFixed(2)}`;
+
+      // Free shipping progress bar
+      const bar = document.getElementById('checkout-shipping-progress');
+      const text = document.getElementById('checkout-shipping-banner-text');
+      const badge = document.getElementById('checkout-shipping-badge');
+      if (bar) bar.style.width = `${totals.freeShippingProgress}%`;
+      if (text && badge) {
+        if (totals.subtotal >= totals.freeShippingThreshold) {
+          text.innerHTML = `You've unlocked complimentary <span class="text-primary font-semibold">White Glove Delivery!</span> (Spent $890+)`;
+          badge.textContent = "Benefit Activated";
+        } else {
+          const rem = totals.freeShippingThreshold - totals.subtotal;
+          text.innerHTML = `Add <span class="text-primary font-semibold">$${rem.toFixed(2)}</span> to unlock complimentary White Glove Assembly &amp; Delivery`;
+          badge.textContent = `${totals.freeShippingProgress}%`;
+        }
+      }
+
+      // Promo
+      const discountRow = document.getElementById('summary-discount-row');
+      const promoBadge = document.getElementById('applied-promo-badge');
+      const promoStatus = document.getElementById('promo-status-text');
+      if (totals.discount > 0 && totals.promo) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('summary-discount-val').textContent = `-$${totals.discount.toFixed(2)}`;
+        document.getElementById('summary-discount-tag').textContent = `${Math.round(totals.promo.rate * 100)}% Off`;
+        promoBadge.classList.remove('hidden');
+        document.getElementById('applied-promo-text').textContent = totals.promo.label;
+        promoStatus.textContent = "1 Applied";
+      } else {
+        discountRow.classList.add('hidden');
+        promoBadge.classList.add('hidden');
+        promoStatus.textContent = "0 Applied";
+      }
+
+      // Protection Plan
+      const protRow = document.getElementById('summary-protection-row');
+      const protChk = document.getElementById('checkout-protection-chk');
+      if (totals.protection) {
+        protRow.classList.remove('hidden');
+        if (protChk) protChk.checked = true;
+      } else {
+        protRow.classList.add('hidden');
+        if (protChk) protChk.checked = false;
+      }
+    }
+
+    function handleApplyPromo() {
+      const code = document.getElementById('checkout-promo-input').value;
+      const res = AURAStore.applyPromoCode(code);
+      AURAStore.showToast(res.message);
+    }
+
+    function goToCheckoutStep(step) {
+      currentCheckoutStep = step;
+      document.getElementById('checkout-step-1').classList.toggle('hidden', step !== 1);
+      document.getElementById('checkout-step-2').classList.toggle('hidden', step !== 2);
+      document.getElementById('checkout-step-3').classList.toggle('hidden', step !== 3);
+
+      const cta = document.getElementById('checkout-cta-text');
+      if (step === 1) cta.textContent = "Proceed to Shipping";
+      else if (step === 2) cta.textContent = "Proceed to Payment";
+      else if (step === 3) cta.textContent = "Place Order & Dispatch";
+
+      // Stepper classes
+      [1, 2, 3].forEach(s => {
+        const num = document.getElementById(`step-num-${s}`);
+        const label = document.getElementById(`step-label-${s}`);
+        const bar = document.getElementById(`step-bar-${s}`);
+        if (s <= step) {
+          num.className = "w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-[12px] font-semibold shrink-0";
+          label.className = "font-semibold text-on-surface text-[14px] truncate";
+          bar.className = "absolute bottom-0 left-0 right-0 h-0.5 bg-primary";
+        } else {
+          num.className = "w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-[12px] font-semibold shrink-0";
+          label.className = "text-[14px] truncate text-on-surface-variant";
+          bar.className = "absolute bottom-0 left-0 right-0 h-0.5 bg-surface-container-high";
+        }
+      });
+    }
+
+    function handleCheckoutCTA() {
+      if (currentCheckoutStep === 1) {
+        goToCheckoutStep(2);
+      } else if (currentCheckoutStep === 2) {
+        goToCheckoutStep(3);
+      } else if (currentCheckoutStep === 3) {
+        triggerOrderSuccess();
+      }
+    }
+
+    function selectPaymentTab(tab) {
+      document.querySelectorAll('#pay-tab-card, #pay-tab-klarna, #pay-tab-apple').forEach(b => {
+        b.className = "p-3 rounded-xl border border-outline-variant/40 bg-surface-container-low text-on-surface font-semibold text-[13px] flex items-center justify-center gap-1.5";
+      });
+      const active = document.getElementById(`pay-tab-${tab}`);
+      if (active) active.className = "p-3 rounded-xl border border-primary bg-primary-fixed/20 text-primary font-semibold text-[13px] flex items-center justify-center gap-1.5";
+    }
+
+    function triggerOrderSuccess() {
+      const modal = document.getElementById('order-success-modal');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.querySelector('.bg-charcoal\\/60').classList.remove('opacity-0');
+        modal.querySelector('.glass-modal').classList.remove('opacity-0', 'scale-95');
+      }, 10);
+      AURAStore.clearCart();
+    }
+
+    function renderAccessories() {
+      const grid = document.getElementById('checkout-accessories-grid');
+      if (!grid) return;
+      grid.innerHTML = ACCESSORIES.map(acc => `
+        <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-outline-variant/30 flex flex-col justify-between group card-hover-scale">
+          <div>
+            <div class="w-full h-48 rounded-xl overflow-hidden bg-surface-container mb-space-sm relative">
+              <img src="${acc.image}" alt="${acc.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <span class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2.5 py-0.5 rounded-full text-[10px] text-on-surface font-semibold uppercase">${acc.badge}</span>
+            </div>
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="font-label-caps text-[10px] text-outline uppercase tracking-wider block">${acc.category}</span>
+                <h4 class="font-display-hero text-lg text-on-surface font-medium">${acc.title}</h4>
+              </div>
+              <span class="font-semibold text-on-surface text-[14px]">$${acc.price}.00</span>
+            </div>
+            <p class="text-[12px] text-on-surface-variant mt-1 leading-relaxed">${acc.desc}</p>
+          </div>
+          <button onclick="AURAStore.addItem({id: '${acc.id}', title: '${acc.title}', price: ${acc.price}, categoryLabel: '${acc.category}', image: '${acc.image}', provenance: 'Artisan Atelier'}, 1)" class="mt-space-md w-full h-11 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface text-[13px] font-semibold tracking-wide transition-colors flex items-center justify-center gap-1.5 shadow-sm" type="button">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            <span>Add to Cart (+$${acc.price})</span>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initCheckout();
+    });
+  </script>
+</body>
+</html>

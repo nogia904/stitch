@@ -1,0 +1,20 @@
+{
+  "name": "stitch-aura-living-ecommerce",
+  "version": "1.0.0",
+  "description": "Full E-Commerce Website built for Stitch — AURA Living warm minimalism luxury store",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx -y serve . -l 3000",
+    "dev": "npx -y serve . -l 3000"
+  },
+  "keywords": [
+    "stitch",
+    "ecommerce",
+    "aura-living",
+    "luxury",
+    "warm-minimalism",
+    "tailoring"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

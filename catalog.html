@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Collections &amp; Architectural Catalog — AURA Living</title>
+
+  <!-- Typography & Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#994126",
+            "primary-container": "#b9583b",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#ffdbd1",
+            "on-primary-fixed": "#3a0a00",
+            "secondary": "#536251",
+            "secondary-container": "#d4e4ce",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#586755",
+            "secondary-fixed": "#d7e7d1",
+            "on-secondary-fixed": "#111f11",
+            "tertiary": "#964327",
+            "tertiary-container": "#b55b3d",
+            "surface": "#fcf9f8",
+            "surface-dim": "#dcd9d9",
+            "surface-bright": "#fcf9f8",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f6f3f2",
+            "surface-container": "#f0eded",
+            "surface-container-high": "#eae7e7",
+            "surface-container-highest": "#e5e2e1",
+            "on-surface": "#1c1b1b",
+            "on-surface-variant": "#56423d",
+            "inverse-surface": "#313030",
+            "inverse-on-surface": "#f3f0ef",
+            "outline": "#89726c",
+            "outline-variant": "#dcc1b9",
+            "error": "#ba1a1a"
+          },
+          fontFamily: {
+            "display-hero": ["Playfair Display", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "1.5rem",
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "margin-mobile": "1.25rem",
+            "space-xs": "0.375rem",
+            "space-sm": "0.75rem",
+            "space-md": "1.25rem",
+            "space-lg": "2rem",
+            "space-xl": "3.5rem"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 inset-x-0 z-50 glass-header border-b border-outline-variant/30 shadow-[0_1px_12px_rgba(28,27,27,0.03)]">
+    <div class="bg-surface-container-high/80 px-gutter-mobile md:px-margin border-b border-outline-variant/20">
+      <div class="max-w-[1360px] mx-auto h-8 flex items-center justify-center text-center">
+        <p class="font-label-caps text-[11px] text-on-surface-variant tracking-wider uppercase flex items-center gap-space-sm">
+          <span>Complimentary worldwide white-glove shipping on orders over $150</span>
+          <span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+          <span class="text-primary font-semibold">Use code AURAHOME for 15% off</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-[1360px] mx-auto h-20 px-gutter-mobile md:px-margin flex items-center justify-between gap-gutter">
+      <div class="flex items-center gap-space-md shrink-0">
+        <a class="flex items-center gap-space-sm group" href="index.html">
+          <img alt="AURA Living Brand Logo" class="h-8 w-auto object-contain" src="assets/logo.svg"/>
+        </a>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-space-lg">
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="index.html">Home</a>
+        <a class="transition-colors py-1 text-primary font-semibold border-b border-primary pb-0.5 text-label-md" href="catalog.html">Shop All</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?cat=furniture">Living &amp; Furniture</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?cat=lighting">Lighting</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?cat=ceramics">Ceramics &amp; Decor</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors py-1 text-label-md font-medium" href="catalog.html?sale=true">Sale</a>
+      </nav>
+
+      <div class="flex items-center gap-space-sm shrink-0">
+        <button aria-label="Search catalog" class="hidden sm:flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface-variant hover:text-on-surface transition-all" type="button">
+          <span class="material-symbols-outlined text-[18px]">search</span>
+          <span class="text-[13px] hidden md:inline">Search</span>
+          <kbd class="text-[11px] bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant/50 text-on-surface-variant font-mono">⌘K</kbd>
+        </button>
+
+        <a aria-label="View Wishlist" class="relative p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#">
+          <span class="material-symbols-outlined text-[22px]">favorite</span>
+          <span class="absolute top-1 right-1 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-secondary text-on-secondary font-label-caps text-[10px] leading-none font-bold">0</span>
+        </a>
+
+        <a aria-label="View Shopping Cart" class="flex items-center gap-space-xs p-1.5 pr-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors group" href="checkout.html">
+          <span class="relative flex items-center">
+            <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+            <span class="absolute -top-1 -right-1 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-primary text-on-primary font-label-caps text-[10px] leading-none font-bold">0</span>
+          </span>
+          <span class="font-label-sm text-[13px] text-on-surface hidden md:inline font-semibold pl-1">$0.00</span>
+        </a>
+
+        <div class="h-5 w-px bg-outline-variant/40 mx-0.5 hidden sm:block"></div>
+
+        <a aria-label="Customer Account" class="flex items-center gap-space-xs pl-1 group" href="#">
+          <img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/50 group-hover:ring-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdxJ7Sts5Ei8OZPEWBSIsITEE0gY2CmfLGcXFlOQux3n3VC3TLIrVsyW-HfefRuBi3Zt5cSwhWhgJMs6F2439y-7PnOhyY8X2TsI7HmrWBDg2u5ClqXz0TI-Wp8MopzAZNfBrrsp2nmUfOkqdbw114LcBkzXWHfzwocqaypCXgSBkBddNQr0TIIlN5YEg792j8V2xqyUTr9ImLFVHcoxuSYZuM7rlybj76HzhqYuE-qQfHVSa5A1zc"/>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CATALOG CONTENT -->
+  <main class="w-full pt-28 bg-surface min-h-screen">
+    <div class="flex flex-col w-full">
+      <!-- Subtle ambient glow background elements -->
+      <div class="relative w-full max-w-[1360px] mx-auto px-gutter-mobile md:px-margin pt-space-md pb-space-xl">
+        <div class="absolute top-20 right-10 w-96 h-96 bg-primary-fixed/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+        <div class="absolute top-80 left-4 w-80 h-80 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+        <!-- 1. Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-[11px] tracking-widest uppercase mb-space-sm">
+          <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+          <a class="hover:text-primary transition-colors" href="catalog.html">Collections</a>
+          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+          <span id="breadcrumb-current-cat" class="text-on-surface font-semibold">Living &amp; Interior Sculptures</span>
+        </nav>
+
+        <!-- Header Content -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pb-space-lg">
+          <div class="max-w-2xl">
+            <span class="font-label-caps text-[11px] text-primary uppercase tracking-[0.2em] font-semibold block mb-space-xs">Artisanal Living Spaces</span>
+            <h1 id="catalog-page-title" class="font-display-hero text-4xl lg:text-5xl text-on-surface tracking-tight">Living &amp; Interior Sculptures</h1>
+            <p class="font-body-md text-base text-on-surface-variant mt-space-xs leading-relaxed">
+              Curated architectural designs engineered with sustainable solid timber, hand-cast travertine, and certified organic textiles crafted for timeless tactile presence.
+            </p>
+          </div>
+          <!-- Quick Highlights stats -->
+          <div class="flex items-center gap-space-lg self-start lg:self-auto bg-surface-container-low px-space-md py-space-sm rounded-2xl shadow-sm">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-secondary text-[22px]">eco</span>
+              <div>
+                <span class="block font-label-caps text-[10px] text-on-surface-variant uppercase">FSC Certified</span>
+                <span class="font-label-md text-[13px] font-semibold text-on-surface">100% Solid Timber</span>
+              </div>
+            </div>
+            <div class="w-px h-8 bg-surface-variant"></div>
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-primary text-[22px]">local_shipping</span>
+              <div>
+                <span class="block font-label-caps text-[10px] text-on-surface-variant uppercase">White Glove Delivery</span>
+                <span class="font-label-md text-[13px] font-semibold text-on-surface">Complimentary &gt;$150</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Filters Strip & Toolbar -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-sm rounded-2xl shadow-sm mb-space-lg border border-outline-variant/30">
+          <!-- Active Chips -->
+          <div class="flex flex-wrap items-center gap-space-xs" id="activeFilterPills">
+            <span class="font-label-caps text-[11px] text-on-surface-variant uppercase mr-1">Active:</span>
+            <span id="chip-in-stock" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-[12px] font-medium shadow-sm">
+              <span>In Stock Only</span>
+              <button onclick="toggleInStockFilter(false)" aria-label="Remove filter" class="hover:opacity-75 focus:outline-none flex items-center"><span class="material-symbols-outlined text-[14px]">close</span></button>
+            </span>
+            <span id="chip-cat" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface text-[12px] font-medium shadow-sm">
+              <span id="chip-cat-text">Category: All</span>
+              <button onclick="selectCategory('all')" aria-label="Remove filter" class="hover:opacity-75 focus:outline-none flex items-center"><span class="material-symbols-outlined text-[14px]">close</span></button>
+            </span>
+            <button onclick="resetAllFilters()" class="text-primary hover:text-primary-container text-[12px] font-semibold underline underline-offset-4 ml-space-xs transition-colors">
+              Reset Filters
+            </button>
+          </div>
+          <!-- Controls: Counter, Sort, Layout Switcher -->
+          <div class="flex items-center gap-space-md shrink-0 justify-between md:justify-end">
+            <span id="catalog-count-text" class="text-[13px] text-on-surface-variant">Showing <strong class="text-on-surface font-medium">8</strong> pieces</span>
+            <div class="flex items-center gap-space-xs">
+              <!-- Sort Dropdown -->
+              <div class="relative inline-block text-left">
+                <select id="sort-select" onchange="handleSortChange(this.value)" class="appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface text-[13px] font-medium pl-3 pr-8 py-2 rounded-xl cursor-pointer focus:outline-none shadow-sm transition-colors border border-outline-variant/30">
+                  <option value="featured">Featured Curations</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="rating">Customer Rating</option>
+                  <option value="newest">Newest Arrivals</option>
+                </select>
+                <span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute right-2.5 top-2.5 pointer-events-none">unfold_more</span>
+              </div>
+              <!-- View Toggle Buttons -->
+              <div class="hidden sm:flex items-center bg-surface-container-low p-1 rounded-xl shadow-sm border border-outline-variant/30">
+                <button onclick="setLayoutColumns(3)" aria-label="3 Column Grid View" class="p-1.5 rounded-lg bg-surface-container-lowest text-primary shadow-sm" id="view3Btn">
+                  <span class="material-symbols-outlined text-[18px] block">grid_view</span>
+                </button>
+                <button onclick="setLayoutColumns(4)" aria-label="4 Column Grid View" class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" id="view4Btn">
+                  <span class="material-symbols-outlined text-[18px] block">view_comfy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN BODY: Faceted Sidebar + Product Matrix -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+          
+          <!-- 2. Faceted Left Sidebar Filter -->
+          <aside class="lg:col-span-3 space-y-space-md">
+            <div class="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-outline-variant/30 space-y-space-md">
+              <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
+                <div class="flex items-center gap-space-xs text-on-surface font-semibold text-[14px]">
+                  <span class="material-symbols-outlined text-primary text-[18px]">tune</span>
+                  <span>Refine Collection</span>
+                </div>
+                <button onclick="resetAllFilters()" class="text-primary text-[11px] font-semibold uppercase hover:underline">Reset</button>
+              </div>
+
+              <!-- Filter Search Input -->
+              <div>
+                <div class="relative">
+                  <input id="catalog-inline-search" oninput="handleInlineSearch(this.value)" type="text" placeholder="Filter by material, name..." class="w-full h-10 px-3 pr-8 rounded-xl bg-surface-container-low border border-outline-variant/30 text-[13px] text-on-surface placeholder:text-outline focus:outline-none focus:border-primary transition-all" />
+                  <span class="material-symbols-outlined text-[16px] text-outline absolute right-2.5 top-2.5">search</span>
+                </div>
+              </div>
+
+              <!-- Categories -->
+              <div class="pt-space-xs">
+                <span class="block text-[13px] font-semibold text-on-surface mb-2">Category Taxonomy</span>
+                <div class="space-y-1.5 text-[13px]">
+                  <label class="flex items-center justify-between cursor-pointer group py-1">
+                    <div class="flex items-center gap-2">
+                      <input type="radio" name="catFilter" value="all" checked onchange="selectCategory('all')" class="accent-primary" />
+                      <span class="text-on-surface group-hover:text-primary transition-colors font-medium">All Curations</span>
+                    </div>
+                    <span class="text-[11px] text-outline">8</span>
+                  </label>
+                  <label class="flex items-center justify-between cursor-pointer group py-1">
+                    <div class="flex items-center gap-2">
+                      <input type="radio" name="catFilter" value="furniture" onchange="selectCategory('furniture')" class="accent-primary" />
+                      <span class="text-on-surface group-hover:text-primary transition-colors">Living &amp; Furniture</span>
+                    </div>
+                    <span class="text-[11px] text-outline">5</span>
+                  </label>
+                  <label class="flex items-center justify-between cursor-pointer group py-1">
+                    <div class="flex items-center gap-2">
+                      <input type="radio" name="catFilter" value="lighting" onchange="selectCategory('lighting')" class="accent-primary" />
+                      <span class="text-on-surface group-hover:text-primary transition-colors">Ambient Lighting</span>
+                    </div>
+                    <span class="text-[11px] text-outline">1</span>
+                  </label>
+                  <label class="flex items-center justify-between cursor-pointer group py-1">
+                    <div class="flex items-center gap-2">
+                      <input type="radio" name="catFilter" value="ceramics" onchange="selectCategory('ceramics')" class="accent-primary" />
+                      <span class="text-on-surface group-hover:text-primary transition-colors">Ceramics &amp; Decor</span>
+                    </div>
+                    <span class="text-[11px] text-outline">1</span>
+                  </label>
+                  <label class="flex items-center justify-between cursor-pointer group py-1">
+                    <div class="flex items-center gap-2">
+                      <input type="radio" name="catFilter" value="textiles" onchange="selectCategory('textiles')" class="accent-primary" />
+                      <span class="text-on-surface group-hover:text-primary transition-colors">Organic Textiles</span>
+                    </div>
+                    <span class="text-[11px] text-outline">2</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Price Filter Range -->
+              <div class="pt-space-xs border-t border-outline-variant/20">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[13px] font-semibold text-on-surface">Max Price</span>
+                  <span id="price-slider-val" class="text-[13px] font-semibold text-primary">$1,500</span>
+                </div>
+                <input id="price-slider" oninput="handlePriceSlider(this.value)" type="range" min="100" max="1500" step="50" value="1500" class="w-full accent-primary cursor-pointer" />
+                <div class="flex justify-between text-[11px] text-outline mt-1 font-mono">
+                  <span>$100</span>
+                  <span>$1,500+</span>
+                </div>
+              </div>
+
+              <!-- Materials -->
+              <div class="pt-space-xs border-t border-outline-variant/20">
+                <span class="block text-[13px] font-semibold text-on-surface mb-2">Natural Materials</span>
+                <div class="space-y-1.5 text-[13px]">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleMaterialFilter('Solid White Oak')" class="accent-primary w-4 h-4 rounded" />
+                    <span>Solid White Oak</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleMaterialFilter('Travertine Stone')" class="accent-primary w-4 h-4 rounded" />
+                    <span>Travertine Stone</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleMaterialFilter('Bouclé')" class="accent-primary w-4 h-4 rounded" />
+                    <span>French Wool Bouclé</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleMaterialFilter('Brass')" class="accent-primary w-4 h-4 rounded" />
+                    <span>Brushed Brass</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleMaterialFilter('Terracotta')" class="accent-primary w-4 h-4 rounded" />
+                    <span>Raw Terracotta</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Availability -->
+              <div class="pt-space-xs border-t border-outline-variant/20">
+                <span class="block text-[13px] font-semibold text-on-surface mb-2">Availability</span>
+                <label class="flex items-center justify-between cursor-pointer text-[13px]">
+                  <div class="flex items-center gap-2">
+                    <input id="in-stock-checkbox" onchange="toggleInStockFilter(this.checked)" checked type="checkbox" class="accent-primary w-4 h-4 rounded" />
+                    <span>In Stock Only</span>
+                  </div>
+                  <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                </label>
+              </div>
+
+              <!-- Designer Capsule -->
+              <div class="pt-space-xs border-t border-outline-variant/20">
+                <span class="block text-[13px] font-semibold text-on-surface mb-2">Design Capsule</span>
+                <div class="space-y-1 text-[13px]">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleCapsuleFilter('Studio AURA')" class="accent-primary w-4 h-4 rounded" />
+                    <span>Studio AURA</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleCapsuleFilter('Nordic Echoes')" class="accent-primary w-4 h-4 rounded" />
+                    <span>Nordic Echoes</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" onchange="toggleCapsuleFilter('Kyoto Rituals')" class="accent-primary w-4 h-4 rounded" />
+                    <span>Kyoto Rituals</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Artisan Guarantee Card -->
+            <div class="bg-surface-container-high p-space-md rounded-2xl text-on-surface space-y-space-xs shadow-sm">
+              <div class="flex items-center gap-space-xs text-primary">
+                <span class="material-symbols-outlined text-[20px]">verified</span>
+                <span class="font-label-md text-[13px] font-semibold text-on-surface">10-Year Craft Warranty</span>
+              </div>
+              <p class="text-[12px] text-on-surface-variant leading-relaxed">
+                Each frame is mortise-and-tenon joined with organic non-toxic plant waxes. Sustainably produced to endure across generations.
+              </p>
+            </div>
+          </aside>
+
+          <!-- 3. Rich Product Grid -->
+          <section aria-label="Catalog Products" class="lg:col-span-9 flex flex-col space-y-space-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" id="catalogProductGrid">
+              <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Mid-Grid Curated Editorial Inset -->
+            <aside class="relative w-full rounded-2xl overflow-hidden bg-surface-container-high shadow-sm my-space-sm border border-outline-variant/30">
+              <div class="grid grid-cols-1 md:grid-cols-12 items-center">
+                <div class="p-space-lg md:col-span-7 space-y-space-sm z-10">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-[10px] uppercase tracking-wider font-semibold">
+                    <span class="material-symbols-outlined text-[14px]">texture</span>
+                    Tactile Experience
+                  </span>
+                  <h3 class="font-headline-lg text-2xl lg:text-3xl text-on-surface font-display-hero">Complimentary Swatch Kits</h3>
+                  <p class="font-body-md text-sm text-on-surface-variant max-w-lg">
+                    Experience our raw Belgian linens, Italian nubuck leathers, and bouclé weaves in your home's natural light before curating your sanctuary.
+                  </p>
+                  <div class="pt-space-xs flex flex-wrap items-center gap-space-sm">
+                    <button onclick="AURAStore.showToast('Swatch Kit dispatched to your address')" class="px-space-md py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md text-[13px] font-semibold transition-colors shadow-sm">
+                      Order Swatch Kit ($15 refunded on purchase)
+                    </button>
+                    <span class="text-[12px] text-on-surface-variant">Includes 6 custom tactile swatches</span>
+                  </div>
+                </div>
+                <div class="md:col-span-5 h-64 md:h-full min-h-[220px] relative overflow-hidden">
+                  <img class="w-full h-full object-cover" alt="Layered textile swatches" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCquksM9UashFz_qU_X0j6ZF5yCZh7rrwJ2Wyts3G6xjagSHusBzcz-PdxiYG3NDm_Tl2NTrIsRm7H9ZoM1kW1gCCFuVTC3TRbdgzGBxykxSETcplmwTN4cY5se0ioUPuT0m3YWcpMklepJUIGzHyb8yjVhxps21ms80JKArljCxRnPcTdhsntBjmIoRmWoqfK_R76d2u1wSPJJqB5HT8DUR4py3G2-sgngwQsJzzuoiPuNOP4hNxiQ"/>
+                </div>
+              </div>
+            </aside>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30 text-on-surface">
+    <div class="max-w-[1360px] mx-auto px-gutter-mobile md:px-margin pt-space-xl pb-space-lg">
+      <div class="pt-space-md border-t border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-space-md text-[13px] text-on-surface-variant">
+        <span>© 2025 AURA Living Inc. All rights reserved.</span>
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="hover:text-primary">Home</a>
+          <a href="catalog.html" class="hover:text-primary font-medium text-primary">Catalog</a>
+          <a href="checkout.html" class="hover:text-primary">Shopping Bag</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+
+  <script>
+    // State for catalog filtering
+    let catalogFilters = {
+      category: 'all',
+      maxPrice: 1500,
+      inStockOnly: true,
+      materials: [],
+      capsules: [],
+      searchQuery: '',
+      sort: 'featured',
+      layoutCols: 3
+    };
+
+    function initCatalogFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cat = urlParams.get('cat');
+      if (cat) {
+        catalogFilters.category = cat;
+        const radio = document.querySelector(`input[name="catFilter"][value="${cat}"]`);
+        if (radio) radio.checked = true;
+      }
+      if (urlParams.get('sale') === 'true') {
+        catalogFilters.sort = 'price-asc';
+        const sortSel = document.getElementById('sort-select');
+        if (sortSel) sortSel.value = 'price-asc';
+      }
+      renderCatalog();
+    }
+
+    function selectCategory(cat) {
+      catalogFilters.category = cat;
+      const radio = document.querySelector(`input[name="catFilter"][value="${cat}"]`);
+      if (radio) radio.checked = true;
+      renderCatalog();
+    }
+
+    function toggleInStockFilter(val) {
+      catalogFilters.inStockOnly = val;
+      const chk = document.getElementById('in-stock-checkbox');
+      if (chk) chk.checked = val;
+      renderCatalog();
+    }
+
+    function handlePriceSlider(val) {
+      catalogFilters.maxPrice = parseInt(val, 10);
+      const label = document.getElementById('price-slider-val');
+      if (label) label.textContent = `$${val}`;
+      renderCatalog();
+    }
+
+    function handleInlineSearch(val) {
+      catalogFilters.searchQuery = val.trim().toLowerCase();
+      renderCatalog();
+    }
+
+    function toggleMaterialFilter(mat) {
+      const idx = catalogFilters.materials.indexOf(mat);
+      if (idx > -1) catalogFilters.materials.splice(idx, 1);
+      else catalogFilters.materials.push(mat);
+      renderCatalog();
+    }
+
+    function toggleCapsuleFilter(cap) {
+      const idx = catalogFilters.capsules.indexOf(cap);
+      if (idx > -1) catalogFilters.capsules.splice(idx, 1);
+      else catalogFilters.capsules.push(cap);
+      renderCatalog();
+    }
+
+    function handleSortChange(val) {
+      catalogFilters.sort = val;
+      renderCatalog();
+    }
+
+    function setLayoutColumns(cols) {
+      catalogFilters.layoutCols = cols;
+      const grid = document.getElementById('catalogProductGrid');
+      const btn3 = document.getElementById('view3Btn');
+      const btn4 = document.getElementById('view4Btn');
+      if (cols === 4) {
+        grid.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md";
+        btn4.classList.add('bg-surface-container-lowest', 'text-primary');
+        btn4.classList.remove('text-on-surface-variant');
+        btn3.classList.remove('bg-surface-container-lowest', 'text-primary');
+        btn3.classList.add('text-on-surface-variant');
+      } else {
+        grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md";
+        btn3.classList.add('bg-surface-container-lowest', 'text-primary');
+        btn3.classList.remove('text-on-surface-variant');
+        btn4.classList.remove('bg-surface-container-lowest', 'text-primary');
+        btn4.classList.add('text-on-surface-variant');
+      }
+    }
+
+    function resetAllFilters() {
+      catalogFilters = {
+        category: 'all',
+        maxPrice: 1500,
+        inStockOnly: false,
+        materials: [],
+        capsules: [],
+        searchQuery: '',
+        sort: 'featured',
+        layoutCols: catalogFilters.layoutCols
+      };
+      document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+      const radio = document.querySelector('input[name="catFilter"][value="all"]');
+      if (radio) radio.checked = true;
+      const slider = document.getElementById('price-slider');
+      if (slider) slider.value = 1500;
+      const priceVal = document.getElementById('price-slider-val');
+      if (priceVal) priceVal.textContent = '$1,500';
+      const search = document.getElementById('catalog-inline-search');
+      if (search) search.value = '';
+      renderCatalog();
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById('catalogProductGrid');
+      const countEl = document.getElementById('catalog-count-text');
+      const chipCat = document.getElementById('chip-cat');
+      const chipCatText = document.getElementById('chip-cat-text');
+      const chipStock = document.getElementById('chip-in-stock');
+      const wishlist = AURAStore.getWishlist();
+
+      // Update active chips
+      if (chipCat && chipCatText) {
+        if (catalogFilters.category === 'all') {
+          chipCatText.textContent = 'All Curations';
+        } else {
+          chipCatText.textContent = `Category: ${catalogFilters.category}`;
+        }
+      }
+      if (chipStock) {
+        if (catalogFilters.inStockOnly) chipStock.classList.remove('hidden');
+        else chipStock.classList.add('hidden');
+      }
+
+      // Filter products
+      let items = PRODUCTS.filter(p => {
+        if (catalogFilters.category !== 'all' && p.category !== catalogFilters.category) return false;
+        if (p.price > catalogFilters.maxPrice) return false;
+        if (catalogFilters.inStockOnly && !p.readyToShip) return false;
+        if (catalogFilters.materials.length > 0) {
+          const hasMat = catalogFilters.materials.some(m => p.materials.some(pm => pm.toLowerCase().includes(m.toLowerCase())));
+          if (!hasMat) return false;
+        }
+        if (catalogFilters.capsules.length > 0 && !catalogFilters.capsules.includes(p.capsule)) return false;
+        if (catalogFilters.searchQuery) {
+          const q = catalogFilters.searchQuery;
+          const match = p.title.toLowerCase().includes(q) ||
+                        p.subtitle.toLowerCase().includes(q) ||
+                        p.materials.some(m => m.toLowerCase().includes(q));
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      // Sort
+      if (catalogFilters.sort === 'price-asc') {
+        items.sort((a, b) => a.price - b.price);
+      } else if (catalogFilters.sort === 'price-desc') {
+        items.sort((a, b) => b.price - a.price);
+      } else if (catalogFilters.sort === 'rating') {
+        items.sort((a, b) => b.rating - a.rating);
+      }
+
+      if (countEl) {
+        countEl.innerHTML = `Showing <strong class="text-on-surface font-semibold">${items.length}</strong> of ${PRODUCTS.length} pieces`;
+      }
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-20 text-center space-y-3">
+            <span class="material-symbols-outlined text-[48px] text-outline">search_off</span>
+            <h3 class="font-display-hero text-2xl text-on-surface">No pieces match these refinements</h3>
+            <p class="text-sm text-on-surface-variant max-w-sm mx-auto">Try clearing your material filters or expanding your price threshold.</p>
+            <button onclick="resetAllFilters()" class="px-5 py-2.5 rounded-xl bg-primary text-on-primary font-semibold text-sm">Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = items.map(p => {
+        const isFav = wishlist.includes(p.id);
+        return `
+          <article class="group relative flex flex-col bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-outline-variant/30 card-hover-scale">
+            <!-- Media Area -->
+            <div class="relative w-full aspect-[4/5] bg-surface-container overflow-hidden">
+              <a href="product.html?id=${p.id}">
+                <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" alt="${p.title}" src="${p.images.primary}"/>
+              </a>
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full ${p.badgeType === 'primary' ? 'bg-primary text-on-primary' : (p.badgeType === 'secondary' ? 'bg-secondary text-on-secondary' : 'bg-tertiary-container text-white')} font-label-caps text-[10px] font-semibold shadow-sm">${p.badge}</span>
+                ${p.readyToShip ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-caps text-[10px] font-semibold shadow-sm">Ready to Ship</span>` : ''}
+              </div>
+              <!-- Wishlist Floating Button -->
+              <button onclick="AURAStore.toggleWishlist('${p.id}'); renderCatalog();" aria-label="Save to Wishlist" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-surface-container-lowest/80 backdrop-blur-md ${isFav ? 'text-primary' : 'text-on-surface'} hover:text-primary flex items-center justify-center shadow-md transition-colors z-10">
+                <span class="material-symbols-outlined text-[18px] ${isFav ? 'icon-filled' : ''}">favorite</span>
+              </button>
+              <!-- Multi-angle / Quick Add hover bar -->
+              <div class="absolute bottom-3 left-3 right-3 hidden group-hover:flex items-center justify-between gap-1 p-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-xl shadow-md transition-all">
+                <button onclick="AURAStore.addItem(getProductById('${p.id}'), 1); openCartDrawer();" class="flex-1 py-2 px-2 text-center rounded-lg bg-primary text-on-primary font-label-caps text-[11px] uppercase font-semibold transition-colors hover:bg-primary-container">Quick Add • $${p.price}</button>
+                <a href="product.html?id=${p.id}" class="p-2 rounded-lg hover:bg-surface-variant text-on-surface transition-colors" title="Quick View">
+                  <span class="material-symbols-outlined text-[16px] block">visibility</span>
+                </a>
+              </div>
+            </div>
+            <!-- Card Details -->
+            <div class="p-space-md flex flex-col flex-1 justify-between">
+              <div>
+                <div class="flex items-center justify-between text-on-surface-variant text-[12px] mb-1">
+                  <span>${p.designer}</span>
+                  <div class="flex items-center gap-1 text-primary">
+                    <span class="material-symbols-outlined text-[14px] icon-filled">star</span>
+                    <span class="font-semibold text-on-surface">${p.rating}</span>
+                    <span class="text-outline text-[11px]">(${p.reviewCount})</span>
+                  </div>
+                </div>
+                <h3 class="font-headline-sm text-lg text-on-surface group-hover:text-primary transition-colors font-medium">
+                  <a href="product.html?id=${p.id}">${p.title}</a>
+                </h3>
+                <p class="text-[13px] text-on-surface-variant mt-1 line-clamp-1">${p.subtitle}</p>
+              </div>
+              <div class="pt-space-sm flex items-center justify-between mt-auto">
+                <div class="flex flex-col">
+                  <span class="font-label-caps text-[10px] text-outline uppercase tracking-wider">Starting at</span>
+                  <span class="font-headline-sm text-lg text-on-surface font-semibold">$${p.price}</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  ${(p.fabrics || []).slice(0, 3).map(f => `<span class="w-3.5 h-3.5 rounded-full shadow-inner ring-1 ring-outline-variant" style="background-color: ${f.color};" title="${f.name}"></span>`).join('')}
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initCatalogFromUrl();
+    });
+  </script>
+</body>
+</html>
